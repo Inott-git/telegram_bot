@@ -2,7 +2,7 @@ from aiogram import Dispatcher, types
 from create_bot import db, bot, dp
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
-
+import config as cfg
 
 
 class FSMAdmin(StatesGroup):
@@ -14,7 +14,7 @@ class FSMAdmin(StatesGroup):
 # рассылка сообщения
 async def sendall(message: types.Message):
     if message.chat.type == 'private':
-        if message.from_user.id == 868449417:
+        if message.from_user.id == cfg.ADMIN_ID:
             text = message.text[9:]
             users = db.get_users()
             for item in users:
@@ -72,7 +72,14 @@ async def load_description(message: types.Message, state: FSMContext):
                 print(ex)
 
 
+async def set_mute(message: types.Message):
+    if message.chat.type == 'supergroup':
+        if message.from_user.id == cfg.ADMIN_ID:
+            if not message.reply_to_message:
+                await message.answer('Нет указания сообщения')
 
+            mute_sec = int(message[6:])
+            db.add_mute(message.reply_to_message.from_user.id, mute_sec)
 
 
 def register_admin_message(dp: Dispatcher):
