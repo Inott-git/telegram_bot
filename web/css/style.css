@@ -1,0 +1,36 @@
+.logo{
+    height: 50px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto
+}
+body{
+    background: #171212;
+}
+
+.title_name{
+    color: aliceblue;
+    text-align: center;
+}
+
+header{
+
+    margin-bottom: 10px;
+    height: 30px;
+}
+.buttom{
+    position: relative;
+    display: inline-block;
+    font-size: 90%;
+    font-weight: 700;
+    color: rgb(209,209,217);
+    text-decoration: none;
+    padding: .5em 1em;
+    outline: none;
+    border-radius: 10px;
+    background: linear-gradient(rgb(110,112,120), rgb(81,81,86)) rgb(110,112,120);
+
+}
+#noned{
+    display: none;
+}
